@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <title>Title</title>
+<div id="ios-button-container1"></div>
 <!--    To do: There is a known issue in payment flow that redirection MIGHT not happen as expected if users using Android-->
 <script th:inline="javascript">
-      const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const isIOS = navigator.userAgent.match(/iPhone|iPad|iPod/)
       var MARKET = "https://play.google.com/store/apps/details?id=com.singtel.hiaccount&feature=search_result";
       var ITUNES = "https://apps.apple.com/sg/app/singtel-prepaid-hi-app/id1034712778";
         if (isIOS) {
@@ -18,7 +19,9 @@
                  if (!isPageHidden()) window.location.href = ITUNES;
                }, 3000);
             };
-            document.getElementById('ios-button-container').appendChild(button);
+            document.getElementById('ios-button-container1').appendChild(button);
+            document.getElementById('ios-button-container1').appendChild(button);
+
         }
         /*<![CDATA[*/
         function isPageHidden() {
@@ -75,6 +78,6 @@
 </script>
 </head>
 <body>
-<div id="ios-button-container"></div>
+<div id="ios-button-container2"></div>
 <script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=495819553" async></script></body>
 </html>
