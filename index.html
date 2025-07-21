@@ -5,6 +5,21 @@
 <title>Title</title>
 <!--    To do: There is a known issue in payment flow that redirection MIGHT not happen as expected if users using Android-->
 <script th:inline="javascript">
+      const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+      var MARKET = "https://play.google.com/store/apps/details?id=com.singtel.hiaccount&feature=search_result";
+      var ITUNES = "https://apps.apple.com/sg/app/singtel-prepaid-hi-app/id1034712778";
+        if (isIOS) {
+      const button = document.createElement('button');
+      button.textContent = "Open in App";
+      button.onclick = function () {
+        // Your deeplink or App Store redirect
+         window.location.href = URL;
+         setTimeout(function () {
+           if (!isPageHidden()) window.location.href = ITUNES;
+         }, 3000);
+      };
+
+      document.getElementById('ios-button-container').appendChild(button);
         /*<![CDATA[*/
         function isPageHidden() {
             if (document.webkitHidden != undefined) {
@@ -18,9 +33,6 @@
             const queryString = window.location.search;
             console.log(queryString);
             var URL = "hiapp://singtel/"+queryString.slice(8)
-            var MARKET = "https://play.google.com/store/apps/details?id=com.singtel.hiaccount&feature=search_result";
-            var ITUNES = "https://apps.apple.com/sg/app/singtel-prepaid-hi-app/id1034712778";
-
  
             if (!(URL.indexOf('invite') > -1) && !(URL.indexOf('promoCodeHome') > -1) && !(URL.indexOf('topupBucket') > -1) && !(URL.indexOf('home') > -1)){
                 // For any payment flow (i.e. all flows except for friend referral, promocode or topupbucket), hiapp check is skipped as user must have the mobile app.
@@ -52,11 +64,6 @@
                 } else if (navigator.userAgent.match(/iPhone|iPad|iPod/)) {
  
                     // IOS
-                    setTimeout(function () {
-                        if (!isPageHidden()) window.location.href = ITUNES;
-                    }, 3000);
- 
-                    window.location.href = URL;
  
                 } else {
                     // Not mobile
