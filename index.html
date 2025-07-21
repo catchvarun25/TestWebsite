@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <title>Title</title>
-<!--    To do: Redeploy: There is a known issue in payment flow that redirection MIGHT not happen as expected if users using Android-->
+<!--    To do: There is a known issue in payment flow that redirection MIGHT not happen as expected if users using Android-->
 <script th:inline="javascript">
         /*<![CDATA[*/
         function isPageHidden() {
@@ -53,10 +53,10 @@
  
                     // IOS
                     setTimeout(function () {
-                        if (true) window.location.href = ITUNES;
+                        if (!isPageHidden()) window.location.href = ITUNES;
                     }, 3000);
  
-                    // window.location.href = URL;
+                    window.location.href = URL;
  
                 } else {
                     // Not mobile
