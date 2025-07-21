@@ -11,12 +11,12 @@
       var ITUNES = "https://apps.apple.com/sg/app/singtel-prepaid-hi-app/id1034712778";
         if (isIOS) {
             const button = document.createElement('button');
-            button.textContent = "Open in App";
+            button.textContent = "Open in App 1";
             button.onclick = function () {
               // Your deeplink or App Store redirect
                // window.location.href = URL;
                setTimeout(function () {
-                 if (!isPageHidden()) window.location.href = "https://www.google.com";
+                 // if (!isPageHidden()) window.location.href = "https://www.google.com";
                }, 3000);
             };
             document.getElementById('ios-button-container1').appendChild(button);
