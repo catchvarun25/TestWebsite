@@ -9,6 +9,7 @@
       const isIOS = navigator.userAgent.match(/iPhone|iPad|iPod/)
       var MARKET = "https://play.google.com/store/apps/details?id=com.singtel.hiaccount&feature=search_result";
       var ITUNES = "https://apps.apple.com/sg/app/singtel-prepaid-hi-app/id1034712778";
+      alert(`iOS: ${iOS}`);
         if (isIOS) {
             const button = document.createElement('button');
             button.textContent = "Open in App";
@@ -20,7 +21,7 @@
                }, 3000);
             };
             document.getElementById('ios-button-container1').appendChild(button);
-            document.getElementById('ios-button-container1').appendChild(button);
+            document.getElementById('ios-button-container2').appendChild(button);
 
         }
         /*<![CDATA[*/
