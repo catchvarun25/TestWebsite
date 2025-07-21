@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Title</title>
+<!--    To do: There is a known issue in payment flow that redirection MIGHT not happen as expected if users using Android-->
+<script th:inline="javascript">
+        /*<![CDATA[*/
+        function isPageHidden() {
+            if (document.webkitHidden != undefined) {
+                return document.webkitHidden;
+            } else if (document.hidden != undefined) {
+                return document.hidden;
+            }
+            return false;
+        }
+        window.onload = function () {
+            const queryString = window.location.search;
+            console.log(queryString);
+            var URL = "hiapp://singtel/"+queryString.slice(8)
+            var MARKET = "https://play.google.com/store/apps/details?id=com.singtel.hiaccount&feature=search_result";
+            var ITUNES = "https://itunes.apple.com/us/app/singtel-hi-account/id1034712778";
+ 
+            if (!(URL.indexOf('invite') > -1) && !(URL.indexOf('promoCodeHome') > -1) && !(URL.indexOf('topupBucket') > -1) && !(URL.indexOf('home') > -1)){
+                // For any payment flow (i.e. all flows except for friend referral, promocode or topupbucket), hiapp check is skipped as user must have the mobile app.
+                window.location.href = URL;
+            }else{
+                // For other flows, need to check if user has hiapp installed or not. If no, then redirect to respective stores, or redirect to hi-account page if user is using web.
+                if (navigator.userAgent.match(/Android/)) {
+                    // Android
+                    if (navigator.userAgent.indexOf('chrome') > -1 && navigator.userAgent.indexOf('opr/') == -1) {
+                        setTimeout(function () {
+                            if (!document.webkitHidden) {
+                                window.location.href = MARKET;
+                            }
+                        }, 5000);
+ 
+                        //window.location.href = "intent://singtel/" + APP_URL + "/#Intent;scheme=hiapp;package=com.singtel.hiapp;end";
+                        window.location.href = URL;
+                    } else {
+                        // Jelly Bean with Chrome browser
+                        setTimeout(function () {
+                            if (!isPageHidden()) {
+                                window.location.href = MARKET;
+                            }
+                        }, 5000);
+                        window.location.href = URL;
+ 
+                    }
+ 
+                } else if (navigator.userAgent.match(/iPhone|iPad|iPod/)) {
+ 
+                    // IOS
+                    setTimeout(function () {
+                        if (!isPageHidden()) window.location.href = ITUNES;
+                    }, 3000);
+ 
+                    window.location.href = URL;
+ 
+                } else {
+                    // Not mobile
+                    window.location.href = 'https://hi.singtel.com';
+                }
+            }
+        };
+        /*]]>*/
+</script>
+</head>
+<body>
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=495819553" async></script></body>
+</html>
