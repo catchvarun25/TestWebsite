@@ -20,7 +20,8 @@
             var URL = "hiapp://singtel/"+queryString.slice(8)
             var MARKET = "https://play.google.com/store/apps/details?id=com.singtel.hiaccount&feature=search_result";
             var ITUNES = "https://itunes.apple.com/us/app/singtel-hi-account/id1034712778";
- 
+            console.log("URL Outside: ",URL);
+
             if (!(URL.indexOf('invite') > -1) && !(URL.indexOf('promoCodeHome') > -1) && !(URL.indexOf('topupBucket') > -1) && !(URL.indexOf('home') > -1)){
                 // For any payment flow (i.e. all flows except for friend referral, promocode or topupbucket), hiapp check is skipped as user must have the mobile app.
                 window.location.href = URL;
@@ -54,11 +55,12 @@
                     setTimeout(function () {
                         if (!isPageHidden()) window.location.href = ITUNES;
                     }, 3000);
- 
+                    console.log("URL iOS: ",URL);
                     window.location.href = URL;
  
                 } else {
                     // Not mobile
+                    console.log("URL NOT MOBILE: ",URL);
                     window.location.href = 'https://hi.singtel.com';
                 }
             }
