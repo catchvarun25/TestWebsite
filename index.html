@@ -24,10 +24,12 @@
 
             if (!(URL.indexOf('invite') > -1) && !(URL.indexOf('promoCodeHome') > -1) && !(URL.indexOf('topupBucket') > -1) && !(URL.indexOf('home') > -1)){
                 // For any payment flow (i.e. all flows except for friend referral, promocode or topupbucket), hiapp check is skipped as user must have the mobile app.
+                console.log("URL TOP: ",URL);
                 window.location.href = URL;
-            }else{
+            } else {
                 // For other flows, need to check if user has hiapp installed or not. If no, then redirect to respective stores, or redirect to hi-account page if user is using web.
                 if (navigator.userAgent.match(/Android/)) {
+                    console.log("URL Android: ",URL);
                     // Android
                     if (navigator.userAgent.indexOf('chrome') > -1 && navigator.userAgent.indexOf('opr/') == -1) {
                         setTimeout(function () {
@@ -50,12 +52,13 @@
                     }
  
                 } else if (navigator.userAgent.match(/iPhone|iPad|iPod/)) {
- 
+                     console.log("URL iOS1: ",URL);
+
                     // IOS
                     setTimeout(function () {
                         if (!isPageHidden()) window.location.href = ITUNES;
                     }, 3000);
-                    console.log("URL iOS: ",URL);
+                    console.log("URL iOS2: ",URL);
                     window.location.href = URL;
  
                 } else {
