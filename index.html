@@ -22,7 +22,7 @@
             var ITUNES = "https://itunes.apple.com/us/app/singtel-hi-account/id1034712778";
             console.log("URL Outside: ",URL);
 
-            if (!(URL.indexOf('invite') > -1) && !(URL.indexOf('promoCodeHome') > -1) && !(URL.indexOf('topupBucket') > -1) && !(URL.indexOf('home') > -1)){
+            if (!(URL.indexOf('invite') > -1) && !(URL.indexOf('promoCodeHome') > -1) && !(URL.indexOf('topupBucket') > -1) && !(URL.indexOf('home') > -1) && !(URL.indexOf('registerESim') > -1)){
                 // For any payment flow (i.e. all flows except for friend referral, promocode or topupbucket), hiapp check is skipped as user must have the mobile app.
                 console.log("URL TOP: ",URL);
                 window.location.href = URL;
